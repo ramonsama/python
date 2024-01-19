@@ -21,6 +21,10 @@ class Reproductor:
         mixer.music.stop()
         return "La música se detuvo"
     
+    def unpause(self):
+        mixer.music.unpause()
+        return "♪"
+
     def volume(self, v):
         mixer.music.set_volume(v)
         return "Volumen a",(100*v), "%"
@@ -36,9 +40,14 @@ if __name__ == "__main__":
         if(accion == 2):
             resp = musica.pause()
         if(accion == 3):
-            resp = musica.stop()
+            resp = musica.unpause()
         if(accion == 4):
-            vol = float(input("Volumen: "))
+            vol = float(input("Volumen :"))
             resp = musica.volume(vol)
+        elif(accion == 5):
+            vol = float(input("Volumen 0 -- 100 "))
+            if(vol >=0 and vol <= 100):
+                vol /= 100
+                resp = musica.volume(vol)
         
         print(resp)
