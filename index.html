@@ -1,0 +1,28 @@
+Hola {{usuario.0.nombre_apellido}}
+<h1>Lista de canciones</h1>
+{% for cancion in canciones %}
+  {{cancion.nombre}},
+  {{cancion.autor}},
+  {{cancion.genero_id}},
+  {{cancion.usuario_id}}
+  <br>
+  {% endfor%}
+
+  Hola {{usuario.0.nombre}} {{usuario.0.apellido}}
+
+  <hr>
+  <h3>Lista de canciones</h3>
+  {% for c in canciones%}
+    {{c.titulo}}
+  {% endfor %}
+  
+<hr>
+<h3>Agregar una canción</h3>
+<form method="POST" action="/agregarcancion/">
+  {% csrf_token %}
+  <input type="hidden" name="user" value="{{usuario.0.nickname}}">
+  <input type="text" name="autor" placeholder="Autor">
+  <input type="text" name="titulo" placeholder="Titulo de la música">
+  <input type="text" name="genero" placeholder="Genero musical">
+  <input type="submit" value="Agregar">
+</form>
